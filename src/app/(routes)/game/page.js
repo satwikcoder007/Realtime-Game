@@ -11,7 +11,7 @@ export default function Page() {
   const [loading,setLoading] = useState(1);
   const [gamePass,setGamePass] = useState({
     room:null,
-    move:'O',
+    move:null,
   });
   const [turn,setTurn] = useState(null);
 
