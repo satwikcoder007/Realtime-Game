@@ -3,6 +3,7 @@ import React,{useEffect,useState} from 'react'
 import { socket } from '@/socket'
 import { useRouter } from 'next/navigation'
 import { Inputs } from '@/components/gameComponents/Inputs'
+import Loader from '@/components/gameComponents/Loader'
 export default function page() {
   const route = useRouter();
   const [isConnected, setIsConnected] = useState(false);
@@ -51,7 +52,7 @@ export default function page() {
   return (
     <div className=' w-screen h-screen justify-center items-center flex'>
         {
-          loading?<>Wating for your oponent</>:<Inputs socket = {socket} gamePass={gamePass} turn={turn} setTurn={setTurn} ></Inputs>
+          loading?<Loader></Loader>:<Inputs socket = {socket} gamePass={gamePass} turn={turn} setTurn={setTurn} ></Inputs>
         }
     </div>
   )

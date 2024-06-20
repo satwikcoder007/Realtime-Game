@@ -30,6 +30,11 @@ export const Inputs = ({ socket, gamePass,turn,setTurn }) => {
   return (
     <div className=" flex justify-center items-center flex-col">
       <div className=' text-foreground text-[30px] font-bold mb-[50px]'>Lets Play</div>
+      <div className=" text-foreground text-[20px] font-bold mb-[50px]">
+        {
+          turn ? <>Your Move</> : <>Oponent's Move</>
+        }
+      </div>
       <div className="grid grid-cols-3 gap-4">
         {board.map((value, index) => (
           <button
