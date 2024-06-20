@@ -11,6 +11,7 @@ export const searchData = (id,io)=>{
                 const socket= io.sockets.sockets.get(socketIds[i]);
                 if(socket){
                     io.to(socketIds[i]).emit("cancel","oponent disconnected load again for match making")
+                    socket.disconnect();
                 }
             }
           }

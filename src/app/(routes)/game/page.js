@@ -4,7 +4,7 @@ import { socket } from '@/socket'
 import { useRouter } from 'next/navigation'
 import { Inputs } from '@/components/gameComponents/Inputs'
 import Loader from '@/components/gameComponents/Loader'
-export default function page() {
+export default function Page() {
   const route = useRouter();
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
