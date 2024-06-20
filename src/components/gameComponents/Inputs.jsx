@@ -32,7 +32,7 @@ export const Inputs = ({ socket, gamePass,turn,setTurn }) => {
       <div className=' text-foreground text-[30px] font-bold mb-[50px]'>Lets Play</div>
       <div className=" text-foreground text-[20px] font-bold mb-[50px]">
         {
-          turn ? <>Your Move</> : <>Oponent's Move</>
+          turn ? <div>Your Move</div> : <div>Oponents Move</div>
         }
       </div>
       <div className="grid grid-cols-3 gap-4">
