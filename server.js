@@ -3,9 +3,12 @@ import next from "next";
 import { Server } from "socket.io";
 import { connectUser } from "./utils/connectUser.js";
 import { searchData } from "./utils/Room.js";
+import dotenv from "dotenv"
+dotenv.config()
+
 const dev = process.env.NODE_ENV !== "production";
-const hostname = "localhost";
-const port = 3000;
+const hostname = process.env.HOSTNAME
+const port = process.env.PORT;
 var arr = [];
 const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
