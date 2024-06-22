@@ -1,10 +1,10 @@
 import { createServer } from "node:http";
 import next from "next";
 import { Server } from "socket.io";
-import { connectUser } from "./utils/connectUser.js";
-import { searchData } from "./utils/Room.js";
+import { connectUser,joinUser} from "./utils/connectUser.js";
+import { searchData,setData,hashmap } from "./utils/Room.js";
 import dotenv from "dotenv"
-dotenv.config()
+dotenv.config();
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = process.env.HOSTNAME
@@ -30,6 +30,21 @@ app.prepare().then(() => {
       console.log(arr);
     });
 
+    socket.on("newroom",(room)=>{
+      console.log(socket.id +"created a room"+room);
+      socket.join(room);
+      setData(socket.id,room);
+      console.log(hashmap)
+    })
+
+    socket.on("enterRoom",(room)=>{
+      if(io.sockets.adapter.rooms.has(room)){
+        joinUser(room,io,socket);
+      }
+      else{
+        io.to(socket.id).emit("noroom");
+      }
+    })
     socket.on("disconnect", () => {
       const index = arr.indexOf(socket.id);
 
@@ -40,6 +55,7 @@ app.prepare().then(() => {
       searchData(socket.id, io);
       console.log("disconnected " + socket.id);
     });
+
   });
   //function for random matchmaking
   setInterval(() => {

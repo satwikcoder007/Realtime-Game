@@ -27,4 +27,19 @@ const connectUser = (arr,io)=>{
     console.log("returning");
 }
 
-export {connectUser};
+const joinUser = (room,io,socket)=>{
+  const roomSockets = io.sockets.adapter.rooms.get(room);
+  if(roomSockets){
+    const socketIds = Array.from(roomSockets);
+    if(socketIds.length!==1){
+      io.to(socket.id).emit("roomFilled");
+      return;
+    }
+    console.log("joining");
+    socket.join(room);
+    setData(socket.id,room);
+    io.to(socketIds[0]).emit("roomJoined",{room:room,move:'O',turn:1});
+    io.to(socket.id).emit("roomJoined",{room:room,move:'X',turn:0});
+  }
+}
+export {connectUser,joinUser};

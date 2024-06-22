@@ -1,4 +1,4 @@
-const hashmap = new Map();
+export const hashmap = new Map();
 
 export const searchData = (id,io)=>{
     if(hashmap.has(id)){
