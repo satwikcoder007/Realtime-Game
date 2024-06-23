@@ -10,17 +10,15 @@ export default function Home() {
   console.log("inside home")
   const{setState} = useContext(StateContext);
   const route = useRouter();
-  console.log(localStorage.getItem("reloaded"));
-  if(localStorage.getItem("reloaded")!=="true"){
-    localStorage.setItem("reloaded","true");
-    window.location.reload();
-  }
+  
   return (
     <div className=' h-screen w-screen flex  items-center bg-background flex-col mt-[100px] overflow-hidden gap-[50px]'>
       <div className=' text-foreground text-[30px] font-bold'>Tic-Tac-Toe</div>
       <div className=' flex'>
         <div className=' h-[300px] w-[700px] box-border bg-card border-2 border-card-foreground flex flex-col gap-3 justify-center items-center'>
-          <Button onClick = {()=>{route.push("/game")}}>Quick match</Button>
+          <Button onClick = {()=>{
+            setState(0);
+            route.push("/game")}}>Quick match</Button>
           <Button onClick = {()=>{
             setState(1);
             route.push("/room");

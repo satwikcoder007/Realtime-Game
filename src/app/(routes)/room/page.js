@@ -32,11 +32,13 @@ export default function Page() {
   };
   const getGame = (room) => {
     socket.emit("enterRoom", room);
-    setState(0);
   };
   useEffect(() => {
 
-    if (socket.connected) onConnect();
+    if (socket.connected){
+      onConnect();
+    }
+    //else socket.connect();
 
     //Event listners
     socket.on("connect", onConnect);
@@ -45,7 +47,6 @@ export default function Page() {
       setGamePass({ room: data.room, move: data.move });
       setTurn(data.turn);
       setLoading(0);
-      setState(0);
     });
     socket.on("roomFilled",()=>{
       alert("Room is full");
@@ -57,9 +58,9 @@ export default function Page() {
     })
     socket.on("cancel", (data) => {
       alert(data);
-      route.push("/");
+      route.push("/")
     });
-
+    
     return () => {
       socket.disconnect();
     };

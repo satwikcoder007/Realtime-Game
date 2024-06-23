@@ -28,6 +28,7 @@ export default function Page() {
 
   useEffect(() => {
     if (socket.connected) {
+      console.log("connected");
       onConnect();
     }
     socket.on("connect", onConnect);
@@ -39,15 +40,17 @@ export default function Page() {
     });
 
     socket.on("cancel", (data) => {
-      console.log(data);
-      route.push("/");
+      alert(data);
     });
 
-    socket.emit("join");
     return () => {
       socket.disconnect();
     };
   }, []);
+
+  useEffect(()=>{
+    socket.emit("join");
+  },[])
 
   return (
     <div className=" w-screen h-screen justify-center items-center flex">

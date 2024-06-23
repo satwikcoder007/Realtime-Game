@@ -10,7 +10,7 @@ export const searchData = (id,io)=>{
                 hashmap.delete(socketIds[i])
                 const socket= io.sockets.sockets.get(socketIds[i]);
                 if(socket){
-                    io.to(socketIds[i]).emit("cancel","oponent disconnected load again for match making")
+                    io.to(socketIds[i]).emit("cancel","oponent disconnected go back to home page")
                     socket.disconnect();
                 }
             }

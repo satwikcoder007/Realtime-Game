@@ -45,6 +45,12 @@ app.prepare().then(() => {
         io.to(socket.id).emit("noroom");
       }
     })
+    socket.on("looser",(room)=>{
+      socket.to(room).emit("youloose");
+    })
+    socket.on("draw",(room)=>{
+      socket.to(room).emit("gameDraw")
+    })
     socket.on("disconnect", () => {
       const index = arr.indexOf(socket.id);
 
